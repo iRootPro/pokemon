@@ -24,9 +24,6 @@ def add_pokemon(folium_map, lat, lon, name, image_url=DEFAULT_IMAGE_URL):
 
 
 def show_all_pokemons(request):
-    with open("pokemon_entities/pokemons.json", encoding="utf-8") as database:
-        pokemons = json.load(database)['pokemons']
-
     pokemons_on_page = []
     pokemons = Pokemon.objects.all()
     for pokemon in pokemons:
