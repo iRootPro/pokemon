@@ -3,6 +3,7 @@ import json
 
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
+from django.http import Http404
 
 from .models import Pokemon, PokemonEntity
 
@@ -57,7 +58,10 @@ def show_all_pokemons(request):
 def show_pokemon(request, pokemon_id):
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
-    pokemon = Pokemon.objects.get(id=pokemon_id)
+    try:
+        pokemon = Pokemon.objects.get(id=pokemon_id)
+    except Pokemon.DoesNotExist:
+        raise Http404("Покемон не найден")
     pokemon_info = {
         'pokemon_id': pokemon.id,
         'img_url': pokemon.photo.url,
