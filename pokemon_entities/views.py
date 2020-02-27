@@ -80,7 +80,7 @@ def show_pokemon(request, pokemon_id):
             }}
         )
 
-    next_evolutions = pokemon.next_evolutions.all().first()
+    next_evolutions = pokemon.next_evolutions.first()
     if next_evolutions:
         pokemon_info.update({
             'next_evolution': {
