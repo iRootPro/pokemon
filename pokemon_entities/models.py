@@ -4,15 +4,15 @@ from django.db import models
 class Pokemon(models.Model):
     title = models.TextField(verbose_name='Название на русском')
     title_en = models.CharField(
-        verbose_name='Название на английском', max_length=50, null=True)
+        verbose_name='Название на английском', max_length=50, blank=True)
     title_jp = models.CharField(
-        verbose_name='Название на японском', max_length=50, null=True)
+        verbose_name='Название на японском', max_length=50, blank=True)
     photo = models.ImageField(
         verbose_name='Фото', upload_to='photos', blank=True)
     description = models.TextField(verbose_name='Описание', default=' ')
     previous_evolution = models.ForeignKey('self', verbose_name='Из кого эволюционирует',
                                            null=True, blank=True,
-                                           on_delete=models.SET_NULL, related_name='next_evolution')
+                                           on_delete=models.SET_NULL, related_name='next_evolutions')
 
     def __str__(self):
         return self.title

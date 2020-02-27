@@ -76,13 +76,13 @@ def show_pokemon(request, pokemon_id):
             }}
         )
 
-    next_evolution = pokemon.next_evolution.all().first()
-    if next_evolution:
+    next_evolutions = pokemon.next_evolutions.all().first()
+    if next_evolutions:
         pokemon_info.update({
             'next_evolution': {
-                'pokemon_id': next_evolution.id,
-                'title_ru': next_evolution.title,
-                'img_url': next_evolution.photo.url
+                'pokemon_id': next_evolutions.id,
+                'title_ru': next_evolutions.title,
+                'img_url': next_evolutions.photo.url
             }
         })
 
