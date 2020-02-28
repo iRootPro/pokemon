@@ -41,13 +41,12 @@ def show_all_pokemons(request):
             })
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
-    for pokemon in pokemons:
-        pokemon_entities = PokemonEntity.objects.all()
-        for pokemon_entity in pokemon_entities:
-            add_pokemon(
-                folium_map, pokemon_entity.lat, pokemon_entity.lon,
-                pokemon_entity.pokemon.title,
-                request.build_absolute_uri(pokemon_entity.pokemon.photo.url))
+    pokemon_entities = PokemonEntity.objects.all()
+    for pokemon_entity in pokemon_entities:
+        add_pokemon(
+            folium_map, pokemon_entity.lat, pokemon_entity.lon,
+            pokemon_entity.pokemon.title,
+            request.build_absolute_uri(pokemon_entity.pokemon.photo.url))
 
     return render(request, 'mainpage.html', context={
         'map': folium_map._repr_html_(),
