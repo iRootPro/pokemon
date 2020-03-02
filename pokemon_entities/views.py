@@ -89,8 +89,8 @@ def show_pokemon(request, pokemon_id):
             }
         })
 
-    pokemons_entity = PokemonEntity.objects.filter(pokemon=pokemon)
-    for pokemon_entity in pokemons_entity:
+    pokemon_entities = pokemon.pokemons.all()
+    for pokemon_entity in pokemon_entities:
         add_pokemon(
             folium_map, pokemon_entity.lat, pokemon_entity.lon,
             pokemon_entity.pokemon.title,
